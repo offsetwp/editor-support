@@ -5,7 +5,9 @@
     OffsetWP Editor Support
 </h1>
 
-> A library to manage WordPress editor types and features
+<p align="center">
+    A library to manage WordPress editor types and features
+</p>
 
 ## Installation
 
@@ -44,7 +46,7 @@ $editor->set_classic_editor(); // Classic Editor
 $editor->set_empty_editor(); // No editor
 ```
 
-> If you wish to disable Gutenberg entirely, we recommend using the [Classic Editor](https://fr.wordpress.org/plugins/classic-editor/) plugin.
+> ⚠ If you wish to disable Gutenberg entirely, we recommend using the [Classic Editor](https://fr.wordpress.org/plugins/classic-editor/) plugin.
 
 ### Add editor features
 
