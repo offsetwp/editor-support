@@ -1,13 +1,9 @@
-![OffsetWP Editor Support](/doc/static/cover.png)
+![OffsetWP Editor Support](/doc/static/cover-light.png#gh-light-mode-only)
+![OffsetWP Editor Support](/doc/static/cover-dark.png#gh-dark-mode-only)
 
 <h1 align="center">
     OffsetWP Editor Support
 </h1>
-
-<div align="center">
-    ![PHP Version - >= 8.1](https://img.shields.io/badge/PHP_Version->=_8.1-#6374c2)
-    ![Support Level - stable](https://img.shields.io/badge/Support_Level-stable-#63c270)
-</div>
 
 > A library to manage WordPress editor types and features
 
