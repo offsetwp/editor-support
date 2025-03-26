@@ -1,15 +1,13 @@
 ![OffsetWP Editor Support](/doc/static/cover.png)
 
-<h2 align="center">
+<h1 align="center">
     OffsetWP Editor Support
-</h2>
+</h1>
 
 <div align="center">
-    ![PHP version](https://img.shields.io/badge/PHP%20version-%3E=%208.1-6374c2?labelColor=24292E&style=flat)
-    ![Support Level](https://img.shields.io/badge/Support%20Level-beta-eb8665?labelColor=24292E&style=flat)
+    ![PHP Version - >= 8.1](https://img.shields.io/badge/PHP_Version->=_8.1-#6374c2)
+    ![Support Level - stable](https://img.shields.io/badge/Support_Level-stable-#63c270)
 </div>
-
-<hr/>
 
 > A library to manage WordPress editor types and features
 
@@ -45,12 +43,9 @@ $editor = EditorSupportManager::from_template( 'template/contact.php' ); // With
 ### Primary editor type
 
 ```php
-// Gutenberg
-$editor->set_gutenberg_editor();
-// Classic Editor
-$editor->set_classic_editor();
-// No editor
-$editor->set_empty_editor();
+$editor->set_gutenberg_editor(); // Gutenberg
+$editor->set_classic_editor(); // Classic Editor
+$editor->set_empty_editor(); // No editor
 ```
 
 > If you wish to disable Gutenberg entirely, we recommend using the [Classic Editor](https://fr.wordpress.org/plugins/classic-editor/) plugin.
@@ -75,17 +70,15 @@ $editor
 ### Add custom feature
 
 ```php
-$editor->add_support( 'my-custom-feature' )
+$editor->add_support( 'my-custom-feature' );
 ```
 
 ### Add all features
 
 ```php
 $editor
-    // Add all features
-    ->add_all()
-    // Add all features without specific ones
-    ->add_all( array( 'content', 'thumbnail' ) )
+    ->add_all() // Add all features
+    ->add_all( array( 'content', 'thumbnail' ) ); // Add all features without specific ones
 ```
 
 ### Remove editor features
@@ -108,15 +101,13 @@ $editor
 ### Remove custom feature
 
 ```php
-$editor->remove_support( 'my-custom-feature' )
+$editor->remove_support( 'my-custom-feature' );
 ```
 
 ### Remove all features
 
 ```php
 $editor
-    // Remove all features
-    ->remove_all()
-    // Remove all features without specific ones
-    ->remove_all( array( 'content', 'thumbnail' ) )
+    ->remove_all() // Remove all features
+    ->remove_all( array( 'content', 'thumbnail' ) ); // Remove all features without specific ones
 ```
