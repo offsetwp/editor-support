@@ -1,0 +1,9 @@
+# OS et IDE files
+.DS_Store
+.idea/
+*.sublime-projet
+*.sublime-workspace
+*.log
+
+# Composer
+vendor

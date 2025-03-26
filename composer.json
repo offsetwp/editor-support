@@ -1,0 +1,31 @@
+{
+    "name": "offsetwp/editor-support",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jérôme Wohlschlegel",
+            "email": "jerome.wohlschlegel@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "OffsetWP\\EditorSupport\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=8.1"
+    },
+    "require-dev": {
+        "wp-coding-standards/wpcs": "^3.0"
+    },
+    "minimum-stability": "stable",
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "scripts": {
+        "test-lint": "@php vendor/bin/phpcs --standard=WordPress src/*"
+    }
+}
