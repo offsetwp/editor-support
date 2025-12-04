@@ -54,7 +54,7 @@ class EditorSupportManager {
 	 * Register the hooks
 	 */
 	private function __construct() {
-		add_action( 'init', \Closure::fromCallable( array( $this, 'hook_add_or_remove_support' ) ) );
+		add_action( 'admin_init', \Closure::fromCallable( array( $this, 'hook_add_or_remove_support' ) ), 10 );
 		add_filter( 'register_post_type_args', \Closure::fromCallable( array( $this, 'hook_enable_gutenberg' ) ), 10, 2 );
 		add_filter( 'gutenberg_can_edit_post_type', \Closure::fromCallable( array( $this, 'hook_disable_gutenberg' ) ), 10, 2 );
 		add_filter( 'use_block_editor_for_post_type', \Closure::fromCallable( array( $this, 'hook_disable_gutenberg' ) ), 10, 2 );
@@ -129,7 +129,7 @@ class EditorSupportManager {
 	 * @param string|int $instance_value The instance value.
 	 * @return self|null
 	 */
-	private static function find_instance( string $instance_type, string|int $instance_value ) {
+	private static function find_instance( string $instance_type, string|int $instance_value ): self|null {
 		foreach ( self::$instances as $instance ) {
 			if ( $instance_type === $instance['type'] && $instance_value === $instance['value'] ) {
 				return $instance;
@@ -283,10 +283,10 @@ class EditorSupportManager {
 	/**
 	 * Add all features
 	 *
-	 * @param array<string> $excluded_features Excluded features.
+	 * @param array<string> ...$excluded_features Excluded features.
 	 * @return self
 	 */
-	public function add_all( array $excluded_features = array() ): self {
+	public function add_all( ...$excluded_features ): self {
 		$supports = array(
 			'title',
 			'editor',
@@ -412,10 +412,10 @@ class EditorSupportManager {
 	/**
 	 * Remove all features
 	 *
-	 * @param array<string> $excluded_features Excluded features.
+	 * @param array<string> ...$excluded_features Excluded features.
 	 * @return self
 	 */
-	public function remove_all( array $excluded_features = array() ): self {
+	public function remove_all( ...$excluded_features ): self {
 		$supports = array(
 			'title',
 			'editor',
@@ -458,7 +458,7 @@ class EditorSupportManager {
 	 * @param string $template The template name.
 	 * @return bool If the instance is the good one.
 	 */
-	private function check_is_good_instance( string $post_type = '', int $post_id = 0, string $template = '' ) {
+	private function check_is_good_instance( string $post_type = '', int $post_id = 0, string $template = '' ): bool {
 		if ( 'post_type' === $this->instance_type && $post_type === $this->instance_value ) {
 			return true;
 		}
@@ -477,11 +477,7 @@ class EditorSupportManager {
 	/**
 	 * Add or remove support
 	 */
-	private function hook_add_or_remove_support() {
-		if ( ! is_admin() ) {
-			return;
-		}
-
+	private function hook_add_or_remove_support(): void {
 		global $pagenow;
 		$post_type = '';
 		$post_id   = 0;
@@ -491,10 +487,11 @@ class EditorSupportManager {
 			$post_id   = ! empty( $_GET ['post'] ) ? (int) $_GET ['post'] : 0;
 			$post_type = (string) get_post_type( $post_id );
 			$template  = get_page_template_slug( $post_id );
+			$template  = is_string( $template ) ? $template : '';
 		}
 
-		if ( 'post-new.php' === $pagenow && ! empty( $_GET ['post_type'] ) ) {
-			$post_type = ! empty( $_GET ['post_type'] ) ? sanitize_text_field( wp_unslash( $_GET ['post_type'] ) ) : '';
+		if ( 'post-new.php' === $pagenow ) {
+			$post_type = ! empty( $_GET ['post_type'] ) ? sanitize_text_field( wp_unslash( $_GET ['post_type'] ) ) : 'post';
 		}
 
 		if ( ! $this->check_is_good_instance( $post_type, $post_id, $template ) ) {
@@ -531,10 +528,11 @@ class EditorSupportManager {
 			$post_id   = ! empty( $_GET ['post'] ) ? (int) $_GET ['post'] : 0;
 			$post_type = (string) get_post_type( $post_id );
 			$template  = get_page_template_slug( $post_id );
+			$template  = is_string( $template ) ? $template : '';
 		}
 
 		if ( 'post-new.php' === $pagenow && ! empty( $_GET ['post_type'] ) ) {
-			$post_type = ! empty( $_GET ['post_type'] ) ? sanitize_text_field( wp_unslash( $_GET ['post_type'] ) ) : '';
+			$post_type = ! empty( $_GET ['post_type'] ) ? sanitize_text_field( wp_unslash( $_GET ['post_type'] ) ) : 'post';
 		}
 
 		if ( ! $this->check_is_good_instance( $post_type, $post_id, $template ) ) {
@@ -555,9 +553,10 @@ class EditorSupportManager {
 	 * @param string $post_type Post type.
 	 * @return bool.
 	 */
-	private function hook_disable_gutenberg( bool $can_edit, string $post_type ) {
+	private function hook_disable_gutenberg( bool $can_edit, string $post_type ): bool {
 		$post_id  = ! empty( $_GET ['post'] ) ? (int) $_GET ['post'] : 0;
 		$template = get_page_template_slug( $post_id );
+		$template = is_string( $template ) ? $template : '';
 
 		if ( ! $this->check_is_good_instance( $post_type, $post_id, $template ) ) {
 			return $can_edit;

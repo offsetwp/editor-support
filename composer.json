@@ -26,6 +26,6 @@
         }
     },
     "scripts": {
-        "test-lint": "@php vendor/bin/phpcs --standard=WordPress src/*"
+        "lint": "@php vendor/bin/phpcs"
     }
 }
