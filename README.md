@@ -76,7 +76,7 @@ $editor->add_support( 'my-custom-feature' );
 ```php
 $editor
     ->add_all() // Add all features
-    ->add_all( array( 'content', 'thumbnail' ) ); // Add all features without specific ones
+    ->add_all( 'content', 'thumbnail' ); // Add all features without specific ones
 ```
 
 ### Remove editor features
@@ -107,5 +107,5 @@ $editor->remove_support( 'my-custom-feature' );
 ```php
 $editor
     ->remove_all() // Remove all features
-    ->remove_all( array( 'content', 'thumbnail' ) ); // Remove all features without specific ones
+    ->remove_all( 'content', 'thumbnail' ); // Remove all features without specific ones
 ```
