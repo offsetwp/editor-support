@@ -1,12 +1,12 @@
-![OffsetWP Editor Support](/doc/static/cover-light.png#gh-light-mode-only)
-![OffsetWP Editor Support](/doc/static/cover-dark.png#gh-dark-mode-only)
+![OffsetWP Editor Support](https://raw.githubusercontent.com/offsetwp/offsetwp.github.io/refs/heads/main/public/common/cover/cover-editor-support-light.png#gh-light-mode-only)
+![OffsetWP Editor Support](https://raw.githubusercontent.com/offsetwp/offsetwp.github.io/refs/heads/main/public/common/cover/cover-editor-support-dark.png#gh-dark-mode-only)
 
 <h1 align="center">
     OffsetWP Editor Support
 </h1>
 
 <p align="center">
-    A library to manage WordPress editor types and features
+    Choose the type of editor (Gutenberg, Classic, or none) based on the post type, post ID, or template, and configure its various features.
 </p>
 
 ## Installation

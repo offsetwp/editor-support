@@ -1,6 +1,7 @@
 {
     "name": "offsetwp/editor-support",
     "type": "library",
+    "description": "Choose the type of editor (Gutenberg, Classic, or none) based on the post type, post ID, or template, and configure its various features.",
     "license": "MIT",
     "authors": [
         {
@@ -8,6 +9,7 @@
             "email": "jerome.wohlschlegel@gmail.com"
         }
     ],
+    "keywords": ["offsetwp", "wordpress", "editor"],
     "autoload": {
         "psr-4": {
             "OffsetWP\\EditorSupport\\": "src/"
@@ -20,12 +22,13 @@
         "wp-coding-standards/wpcs": "^3.0"
     },
     "minimum-stability": "stable",
+    "prefer-stable": true,
+    "scripts": {
+        "lint": "@php vendor/bin/phpcs"
+    },
     "config": {
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true
         }
-    },
-    "scripts": {
-        "lint": "@php vendor/bin/phpcs"
     }
 }
